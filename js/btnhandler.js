@@ -7,30 +7,35 @@ const showDetails = (pet) => {
                 </figure>
                 <div class="card-body p-0 mb-2.5 mt-6">
                     <h4 class="text-xl">${pet.name ? pet.name : "Mister Tartosh"}</h4>
-                    <ul class="space-y-2.5 border-b-[1px] border-[#131313]/10 pb-4">
-                        <li class="flex gap-2">
-                            <img src="./icons/type.png" alt="">
+                    <div class="sm:flex gap-8 border-b-[1px] border-[#131313]/10 pb-4 space-y-4">
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-2">
+                                <img src="./icons/type.png" alt="">
                                 <p>Breed: ${pet.breed ? pet.breed : "Not Available"}</p>
-                        </li>
-                        <li class="flex gap-2">
-                            <img src="./icons/date.png" alt="">
+                            </li>
+                            <li class="flex gap-2">
+                                <img src="./icons/date.png" alt="">
                                 <p>Birth: ${pet.date_of_birth ? pet.date_of_birth : "Not Available"}</p>
-                        </li>
-                        <li class="flex gap-2">
-                            <img src="./icons/gender.png" alt="">
+                            </li>
+                            <li class="flex gap-2">
+                                <img src="./icons/virus.png" alt="">
+                                <p>Vaccinated Status: ${pet.vaccinated_status ? pet.vaccinated_status : "Not Available"}</p>
+                            </li>
+                        </ul>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-2">
+                                <img src="./icons/gender.png" alt="">
                                 <p>Gender: ${pet.gender ? pet.gender : "Not Available"}</p>
-                        </li>
-                        <li class="flex gap-2">
-                            <img src="./icons/price.png" alt="">
+                            </li>
+                            <li class="flex gap-2">
+                                <img src="./icons/price.png" alt="">
                                 <p>Price: ${pet.price ? pet.price + " $" : "Not Available"}</p>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="">
                         <h3 class="text-base font-semibold">Details Information</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                            when looking at its layout.
-                            The point of using is that it has a more-or-less normal distribution of letters, as opposed to
-                            using.</p>
+                        <p>${pet.pet_details ? pet.pet_details : "Not Available"}</p>
                     </div>
                 </div>
                 <div class="modal-action block">
@@ -38,4 +43,18 @@ const showDetails = (pet) => {
                 </div>
         `;
     petDetailsModal.showModal();
+}
+
+const handleAdopt = () => {
+    let countDown = 3;
+    const interval = setInterval(() => {
+        document.getElementById('adoption-modal').showModal()
+        document.getElementById('countDown').textContent = countDown
+        countDown--
+        if (countDown === 0) {
+            document.getElementById('adoption-modal').close()
+            clearInterval(interval)
+        }
+
+    }, 1000)
 }

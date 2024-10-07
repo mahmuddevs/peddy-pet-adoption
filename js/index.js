@@ -1,5 +1,5 @@
 const categoryContainer = document.getElementById("categories")
-
+// Categories
 const showCategories = (categories) => {
     categories.forEach(category => {
         const categoryItem = document.createElement('div')
@@ -21,9 +21,15 @@ const showCategories = (categories) => {
     });
 }
 
+// Show All Pets
 const cardsContainer = document.getElementById("cards-container")
 
 const showAllData = (pets) => {
+    // Sort By Price
+    document.getElementById('sortByPrice').addEventListener('click', () => {
+        pets.sort((a, b) => b.price - a.price);
+        showAllData(pets)
+    })
     if (pets.length === 0) {
         const errorSec = document.createElement('div')
         errorSec.classList.add('bg-[#13131308]', 'col-span-3', 'content-center', 'text-center', 'border', 'border-[#131313]/10', 'rounded-lg', 'w-full', 'h-96')
@@ -41,7 +47,7 @@ const showAllData = (pets) => {
 
         petCard.innerHTML = `
             <figure class="rounded-lg">
-                <img src="${pet.image ? pet.image : "Not Available"}" alt="" class="petImg"/>
+                <img src="${pet.image ? pet.image : "Not Available"}" alt="" class="petImg h-52 rounded-xl"/>
             </figure>
             <div class="card-body p-0 mb-2.5 mt-6">
                 <h4 class="text-xl">Mister Tartosh</h4>
@@ -88,7 +94,12 @@ const showAllData = (pets) => {
             likedPet.src = imgUrl
             likedPetContainer.appendChild(likedPet)
         })
-        petCard.querySelector('.adopt')
+        petCard.querySelector('.adopt').addEventListener('click', () => {
+            handleAdopt(pet)
+            setInterval(() => {
+                petCard.querySelector('.adopt').textContent = 'Adopted'
+            }, 3000)
+        })
 
         petCard.querySelector('.details').addEventListener('click', () => {
             showDetails(pet)
@@ -96,9 +107,9 @@ const showAllData = (pets) => {
         cardsContainer.classList.remove('hidden')
         cardsContainer.classList.add('grid')
         cardsContainer.appendChild(petCard)
-
     })
 }
 
+// Loader
 const loader = document.createElement('span')
 loader.classList.add('loading', 'loading-ring', 'loading-lg', 'absolute', 'inset-0', 'm-auto')
