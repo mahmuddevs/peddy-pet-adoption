@@ -21,7 +21,7 @@
     <li>Array Iterative Method (forEach)</li>
 </ul>
 
-<h2>Live Link: <a href="https://majestic-boot.surge.sh/">https://majestic-boot.surge.sh/</a></h2>
+<h2>Live Link: <a href="https://peddy-adoption-by-mahmud.netlify.app/">https://peddy-adoption-by-mahmud.netlify.app/</a></h2>
   
    
   

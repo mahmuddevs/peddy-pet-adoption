@@ -36,10 +36,10 @@ const showAllData = (pets) => {
             `
         cardsContainer.appendChild(errorSec)
     }
-
+    // Creating cards for each pets
     pets.forEach((pet) => {
         const petCard = document.createElement('div')
-        petCard.classList.add('card', 'bg-base-100', 'shadow-sm', 'p-5', 'border', 'border-[#131313]/10', 'rounded-lg')
+        petCard.classList.add('card', 'bg-base-100', 'shadow-sm', 'p-5', 'border', 'border-[#131313]/10', 'rounded-lg', 'min-w-64')
         console.log(pet)
 
         petCard.innerHTML = `

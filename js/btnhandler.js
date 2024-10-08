@@ -1,3 +1,4 @@
+//fetching details by id
 const fetchPetById = (id) => {
     fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
         .then(res => res.json())
@@ -5,7 +6,7 @@ const fetchPetById = (id) => {
             showDetails(data.petData)
         })
 }
-
+//creating details modal
 const showDetails = (pet) => {
     const petDetailsModal = document.getElementById('petDetailsModal');
     const petDetailsContent = document.getElementById('petDetailsContent');
@@ -53,6 +54,7 @@ const showDetails = (pet) => {
     petDetailsModal.showModal();
 }
 
+//handling adoption behaviour
 const handleAdopt = () => {
     let countDown = 3;
     const interval = setInterval(() => {
