@@ -1,3 +1,11 @@
+const fetchPetById = (id) => {
+    fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            showDetails(data.petData)
+        })
+}
+
 const showDetails = (pet) => {
     const petDetailsModal = document.getElementById('petDetailsModal');
     const petDetailsContent = document.getElementById('petDetailsContent');
@@ -6,7 +14,7 @@ const showDetails = (pet) => {
                     <img src="${pet.image ? pet.image : "Not Available"}" alt="" class="petImg w-full" />
                 </figure>
                 <div class="card-body p-0 mb-2.5 mt-6">
-                    <h4 class="text-xl">${pet.name ? pet.name : "Mister Tartosh"}</h4>
+                    <h4 class="text-xl font-inter">${pet.pet_name ? pet.pet_name : "Not Available"}</h4>
                     <div class="sm:flex gap-8 border-b-[1px] border-[#131313]/10 pb-4 space-y-4">
                         <ul class="space-y-2.5">
                             <li class="flex gap-2">

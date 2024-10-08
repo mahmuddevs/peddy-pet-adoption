@@ -40,13 +40,14 @@ const showAllData = (pets) => {
     pets.forEach((pet) => {
         const petCard = document.createElement('div')
         petCard.classList.add('card', 'bg-base-100', 'shadow-sm', 'p-5', 'border', 'border-[#131313]/10', 'rounded-lg')
+        console.log(pet)
 
         petCard.innerHTML = `
             <figure class="rounded-lg">
                 <img src="${pet.image ? pet.image : "Not Available"}" alt="" class="petImg h-52"/>
             </figure>
             <div class="card-body p-0 mb-2.5 mt-6">
-                <h4 class="text-xl">Mister Tartosh</h4>
+                <h4 class="text-xl font-inter">${pet.pet_name ? pet.pet_name : "Not Available"}</h4>
                 <ul class="space-y-2.5 border-b-[1px] border-[#131313]/10 pb-4">
                     <li class="flex gap-2">
                         <img src="./icons/type.png" alt="">
@@ -66,15 +67,15 @@ const showAllData = (pets) => {
                     </li>
                 </ul>
                 <div class="flex justify-between items-center gap-2 sm:gap-3 mt-4">
-                    <div class="like cursor-pointer border border-[#0E7A81]/15 rounded-lg py-1.5 px-2.5 sm:px-3 text-[#0E7A81]">
+                    <div class="like cursor-pointer border border-[#0E7A81]/15 rounded-lg py-2 px-2.5 sm:px-3 text-[#0E7A81]">
                         <img src="./icons/like.png" alt="" class="max-w-5">
                     </div>
                     <div
-                        class="adopt cursor-pointer text-xs sm:text-sm font-bold border border-[#0E7A81]/15 rounded-lg px-2.5 sm:px-3.5 py-1.5 text-[#0E7A81]">
+                        class="adopt cursor-pointer text-xs sm:text-sm font-bold border border-[#0E7A81]/15 rounded-lg px-2.5 sm:px-3.5 py-2 text-[#0E7A81]">
                         Adopt
                     </div>
                     <div
-                        class="details cursor-pointer text-xs sm:text-sm font-bold border border-[#0E7A81]/15 rounded-lg px-2.5 sm:px-3.5 py-1.5 text-[#0E7A81]">
+                        class="details cursor-pointer text-xs sm:text-sm font-bold border border-[#0E7A81]/15 rounded-lg px-2.5 sm:px-3.5 py-2 text-[#0E7A81]">
                         Details
                     </div>
                 </div>
@@ -87,19 +88,24 @@ const showAllData = (pets) => {
             likedPetContainer.classList.add('grid')
             const imgUrl = petCard.querySelector('.petImg').src
             const likedPet = document.createElement('img')
+            likedPet.classList.add('rounded-lg')
             likedPet.src = imgUrl
             likedPetContainer.appendChild(likedPet)
         })
         petCard.querySelector('.adopt').addEventListener('click', () => {
             handleAdopt(pet)
             setInterval(() => {
-                petCard.querySelector('.adopt').textContent = 'Adopted'
+                const adaptBtn = petCard.querySelector('.adopt')
+                adaptBtn.textContent = 'Adopted'
+                adaptBtn.classList.add('pointer-events-none', 'bg-gray-300', 'text-slate-500')
             }, 3000)
         })
 
+        //fetch details with pet id
         petCard.querySelector('.details').addEventListener('click', () => {
-            showDetails(pet)
+            fetchPetById(pet.petId)
         })
+
         cardsContainer.classList.remove('hidden')
         cardsContainer.classList.add('grid')
         cardsContainer.appendChild(petCard)
