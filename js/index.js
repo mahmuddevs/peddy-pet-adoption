@@ -23,13 +23,9 @@ const showCategories = (categories) => {
 
 // Show All Pets
 const cardsContainer = document.getElementById("cards-container")
+const sortBtn = document.getElementById('sortByPrice')
 
 const showAllData = (pets) => {
-    // Sort By Price
-    document.getElementById('sortByPrice').addEventListener('click', () => {
-        pets.sort((a, b) => b.price - a.price);
-        showAllData(pets)
-    })
     if (pets.length === 0) {
         const errorSec = document.createElement('div')
         errorSec.classList.add('bg-[#13131308]', 'col-span-3', 'content-center', 'text-center', 'border', 'border-[#131313]/10', 'rounded-lg', 'w-full', 'h-96')
@@ -47,7 +43,7 @@ const showAllData = (pets) => {
 
         petCard.innerHTML = `
             <figure class="rounded-lg">
-                <img src="${pet.image ? pet.image : "Not Available"}" alt="" class="petImg h-52 rounded-xl"/>
+                <img src="${pet.image ? pet.image : "Not Available"}" alt="" class="petImg h-52"/>
             </figure>
             <div class="card-body p-0 mb-2.5 mt-6">
                 <h4 class="text-xl">Mister Tartosh</h4>
@@ -107,6 +103,7 @@ const showAllData = (pets) => {
         cardsContainer.classList.remove('hidden')
         cardsContainer.classList.add('grid')
         cardsContainer.appendChild(petCard)
+
     })
 }
 
